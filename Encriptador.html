@@ -2,24 +2,26 @@
 <html>
 <head>
     <script>
-        function copiarTextoDesencriptado() {
-            var textoDesencriptado = document.getElementById("texto-desencriptado").value;
+    function copiarTextoDesencriptado() {
+        var textoDesencriptado = document.getElementById("texto-desencriptado").value;
 
-            // Crea un elemento de textarea temporal
-            var tempTextarea = document.createElement("textarea");
-            tempTextarea.value = textoDesencriptado;
-            document.body.appendChild(tempTextarea);
+        var tempTextarea = document.createElement("textarea");
+        tempTextarea.value = textoDesencriptado;
+        document.body.appendChild(tempTextarea);
 
-            // Selecciona y copia el texto del textarea temporal
-            tempTextarea.select();
-            document.execCommand("copy");
+        tempTextarea.select();
+        document.execCommand("copy");
 
-            // Elimina el textarea temporal
-            document.body.removeChild(tempTextarea);
+        document.body.removeChild(tempTextarea);
 
-            // Mostrar una notificación o realizar cualquier otra acción deseada
-            alert("¡Texto desencriptado copiado al portapapeles!");
-    }
+        var divBordeCopiar = document.getElementById("oculto");
+        divBordeCopiar.classList.add("iluminado");
+        setTimeout(function() {
+            divBordeCopiar.classList.remove("iluminado");
+    }, 1000);
+}
+
+
         function encriptar() {
             var textoOriginal = document.getElementById("texto-original").value;
             var textoEncriptado = "";
@@ -85,27 +87,29 @@
     var divResulB = document.querySelector(".result");
     var textoOriginal = document.getElementById("texto-original");
     var divtextoOriginal = document.getElementById("texto-original");
+    var divTextodesencriptado = document.getElementById("texto-desencriptado").value;
 
-    var regex = /^[a-z\s]+$/; // Expresión regular para verificar letras sin acentos y letras mayúsculas
+    var regex = /^[a-z\s]+$/; 
     
     if (textoOriginal.value.trim() !== "") {
 
         if (regex.test(textoOriginal.value.trim())) {
-        // Si el campo de texto no contiene mayúsculas ni acentos
-        divIma.style.display = "none";
-        divOculto.style.display = "block";
-        divResul.style.boxShadow = "0px 24px 32px -8px rgba(0, 0, 0, 0.9)";
-        divResulB.style.background = "rgba(0, 0, 0, 0.2)";
-        divtextoOriginal.style.color = "#0A3871";
+            divIma.style.display = "none";
+            divOculto.style.display = "block";
+            divResul.style.boxShadow = "0px 24px 32px -8px rgba(0, 0, 0, 0.9)";
+            divResulB.style.background = "rgba(0, 0, 0, 0.2)";
+            divtextoOriginal.style.color = "#0A3871";
 
       } else {
-        // Si el campo de texto contiene mayúsculas, minúsculas o acentos
-        // Realizar la acción específica que deseas
-        // Por ejemplo:
-        divtextoOriginal.style.color = "red";
-        alert("El campo de texto contiene mayúsculas o acentos");
-
-    }
+            divtextoOriginal.style.color = "red";
+        
+            if (divTextodesencriptado.length > 0) {
+                divIma.style.display = "block";
+                divOculto.style.display = "none";
+                divResul.style.boxShadow = "0px 0px 0px 0px rgba(0, 0, 0, 0)";
+                divResulB.style.background = "rgba(0, 0, 0, 0)";
+        }
+        }
 }
         }
 
@@ -136,13 +140,12 @@
                     <img  id="niña" src="imagenes/niña.PNG">
                     <p id="detector">Aquí no hay nada Sherlock ;)</p>
                 </div>
-                <div id="oculto">            
-  
+                <div id="oculto">
                     <textarea id="texto-desencriptado" readonly></textarea><br>
                     <label for="mensaje">¡Ehureka!</label>
-
                     <button id="btn3" onclick="copiarTextoDesencriptado()">Copiar</button>
-                </div>
+                  </div>
+                  
             </section>
 
             
