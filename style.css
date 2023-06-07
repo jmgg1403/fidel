@@ -146,25 +146,11 @@ width: 180px;
 #oculto {
     display: none;
     border: 2px solid transparent;
+    border-color: transparent;
     border-radius: 25px;
     transition: border-color 1s;
   }
   
-  .iluminado {
-    animation: iluminar 1s infinite;
-  }
-  
-  @keyframes iluminar {
-    0% {
-      border-color: transparent;
-    }
-    50% {
-      border-color: rgb(0, 255, 0);
-    }
-    100% {
-      border-color: transparent;
-    }
-  }
   
 #oculto label{
     display: block;

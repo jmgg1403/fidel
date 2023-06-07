@@ -3,8 +3,9 @@
 <head>
     <script>
     function copiarTextoDesencriptado() {
-        var textoDesencriptado = document.getElementById("texto-desencriptado").value;
 
+        //Funcion para copiar texto de texto ecriptado
+        var textoDesencriptado = document.getElementById("texto-desencriptado").value;
         var tempTextarea = document.createElement("textarea");
         tempTextarea.value = textoDesencriptado;
         document.body.appendChild(tempTextarea);
@@ -13,15 +14,17 @@
         document.execCommand("copy");
 
         document.body.removeChild(tempTextarea);
-
+        //funcion para transicion de verde
         var divBordeCopiar = document.getElementById("oculto");
-        divBordeCopiar.classList.add("iluminado");
+        divBordeCopiar.style.borderColor = "rgb(2, 255, 2)";
         setTimeout(function() {
-            divBordeCopiar.classList.remove("iluminado");
-    }, 1000);
+            console.log(divBordeCopiar.style.borderColor = "transparent");
+        }, 500);
+
+        
 }
 
-
+//funcion de encriptar
         function encriptar() {
             var textoOriginal = document.getElementById("texto-original").value;
             var textoEncriptado = "";
@@ -52,7 +55,7 @@
         
             document.getElementById("texto-desencriptado").value = textoEncriptado;
             }
-        
+        //funcion de desencriptar
             function desencriptar() {
             var textoEncriptado = document.getElementById("texto-original").value;
             var textoDesencriptado = "";
@@ -80,35 +83,36 @@
         
             document.getElementById("texto-desencriptado").value = textoDesencriptado;
         }
+        //funcion para mostrar elemento oculto
         function mostrarElemento() {
-    var divIma = document.getElementById("ima");
-    var divOculto = document.getElementById("oculto");
-    var divResul = document.querySelector(".result");
-    var divResulB = document.querySelector(".result");
-    var textoOriginal = document.getElementById("texto-original");
-    var divtextoOriginal = document.getElementById("texto-original");
-    var divTextodesencriptado = document.getElementById("texto-desencriptado").value;
-
-    var regex = /^[a-z\s]+$/; 
+            var divIma = document.getElementById("ima");
+            var divOculto = document.getElementById("oculto");
+            var divResul = document.querySelector(".result");
+            var divResulB = document.querySelector(".result");
+            var textoOriginal = document.getElementById("texto-original");
+            var divtextoOriginal = document.getElementById("texto-original");
+            var divTextodesencriptado = document.getElementById("texto-desencriptado").value;
+//esta es una variable de filtrado de caracteres
+            var regex = /^[a-z\s]+$/; 
     
-    if (textoOriginal.value.trim() !== "") {
+             if (textoOriginal.value.trim() !== "") {
 
-        if (regex.test(textoOriginal.value.trim())) {
-            divIma.style.display = "none";
-            divOculto.style.display = "block";
-            divResul.style.boxShadow = "0px 24px 32px -8px rgba(0, 0, 0, 0.9)";
-            divResulB.style.background = "rgba(0, 0, 0, 0.2)";
-            divtextoOriginal.style.color = "#0A3871";
+                 if (regex.test(textoOriginal.value.trim())) {
+                    divIma.style.display = "none";
+                    divOculto.style.display = "block";
+                    divResul.style.boxShadow = "0px 24px 32px -8px rgba(0, 0, 0, 0.9)";
+                    divResulB.style.background = "rgba(0, 0, 0, 0.2)";
+                    divtextoOriginal.style.color = "#0A3871";
 
-      } else {
-            divtextoOriginal.style.color = "red";
+                } else {
+                     divtextoOriginal.style.color = "red";
         
-            if (divTextodesencriptado.length > 0) {
-                divIma.style.display = "block";
-                divOculto.style.display = "none";
-                divResul.style.boxShadow = "0px 0px 0px 0px rgba(0, 0, 0, 0)";
-                divResulB.style.background = "rgba(0, 0, 0, 0)";
-        }
+                    if (divTextodesencriptado.length > 0) {
+                        divIma.style.display = "block";
+                        divOculto.style.display = "none";
+                        divResul.style.boxShadow = "0px 0px 0px 0px rgba(0, 0, 0, 0)";
+                        divResulB.style.background = "rgba(0, 0, 0, 0)";
+                }
         }
 }
         }
